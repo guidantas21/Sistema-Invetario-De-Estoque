@@ -13,107 +13,74 @@
 
 ## Requisitos da Aplicação
 
-### Drone (classe)
+### Localização (classe abstrata)
 
-Responsável pelo invetário dos produtos do estoque.
+
+
+### Localização de Prédio (estende Localização)
+
+#### Atributos
+- rua
+
+
+
+### Localização de Produto (estende Localização)
+
+#### Atributos
+- rua
+- andar
+- apartamento
+
+
+
+### Produto (classe abstrata)
+
+Pallet que armazena mercadorias.
 
 #### Atributos
 
-- Id
-- Modelo
-- Posição (coordenadas x e y das estantes do estoque)
-- Autonomia (em minutos)
+- id
+- nome
+- descrição
+- Localização de Produto
 
-#### Métodos
 
-- Fazer inventário
-- Procurar produto específico
+### Dimensão (classe abstrata)
 
-### Produto (classe)
-
-A definir...
+### Dimensão de Prédio (estende Dimensão)
 
 #### Atributos
-- Id
-- Nome
-- Descrição
+- número de andares
+- número de apartamentos por andar
 
-#### Métodos
-
-- A definir...
-
-### Pacote (classe)
-
-A definir...
+### Dimensão de Estoque (estende Dimensão)
 
 #### Atributos
-
-- Id
-- Produto
-- Quantidade
-
-#### Métodos
-
-- A definir...
+- número de Prédios
+- número de andares dos Prédios
+- número de apartamentos por andar dos Prédios
 
 
-### Estante (classe)
+### Prédio (classe concreta)
+
+Basicamente uma estante que armzena produtos (se comporta  como uma matriz).
 
 #### Atributos
 
-- Id
-- Largura
-- Altura
-- Matriz de pacotes
-- Quantidade de pacotes
-
-#### Métodos
-
-- Verificar se a estante está vazia.
-- Adicionar pacote na estante
-- Retirar pacote da estante
-- Listar pacotes
-
-### Estoque (classe)
-
-Basicamente onde os produtos são armazenados.
-
-#### Atributos
-
-- Quantidade de estantes
-- Lista de estantes
-- Lista de drones
-- Lista de funcionários
-
-#### Métodos
-
-- A definir...
-
-
-### Funcionário (interface)
-
-Ações que todo funcionário deve fazer.
-
-#### Métodos
-
-- Realizar Tarefa
+- id
+- Localização do Prédio
+- matriz de Produtos
+- capacidade máxima de Produtos
+- quantidade de Produtos registrados
 
 
 
-### Usuário (classe abstrata)
+### Estoque (classe concreta)
 
-Usuário geral do sistema.
+Onde os prédio são armazenados.
 
-#### Atributos
+####  Atributos
 
-- Id
-- Nome
-- Email
-- Contato
-- Permissão
-
-#### Métodos
-
-- A definir
-
-
+- Dimensão de Estoque
+- capacidade máxima
+- quantidade total de Produtos registrados

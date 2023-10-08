@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Gerenciamento de Estoque com Drone
 
 ## Requistos do Trabalho
@@ -11,6 +10,8 @@
 6. O encapsulamento
 7. O uso correto das estruturas de programação básica do JAVA
 8. O uso correto de tratamentos de erros/exceções
+
+
 
 ## Requisitos da Aplicação
 
@@ -33,6 +34,41 @@
 - apartamento
 
 
+### Dispositivo (classe abstrata)
+
+#### Atributos
+
+- id
+- modelo
+
+
+
+### RFID Tag (estende dispositivo)
+
+Identificador de Produtos.
+
+#### Atributos
+- id
+
+
+### Drone (estende dispositivo)
+
+Drone para invetário de estoque.
+
+#### Atributos
+
+- autonomia
+- Localização
+
+
+
+### Empilhadeira (estende dispositivo)
+
+#### Atributos
+
+- Localização
+
+
 
 ### Produto (classe abstrata)
 
@@ -41,6 +77,7 @@ Pallet que armazena mercadorias.
 #### Atributos
 
 - id
+- RFID Tag
 - nome
 - descrição
 - Localização de Produto
@@ -51,18 +88,30 @@ Pallet que armazena mercadorias.
 ### Dimensão de Prédio (estende Dimensão)
 
 #### Atributos
+
 - número de andares
 - número de apartamentos por andar
 
 ### Dimensão de Estoque (estende Dimensão)
 
 #### Atributos
+
 - número de Prédios
 - número de andares dos Prédios
 - número de apartamentos por andar dos Prédios
 
 
-### Prédio (classe concreta)
+### Armazenamento (interface)
+
+Contrato para classes que armazenam Produtos.
+
+#### Método
+
+- adicionar Produto
+- retirar Produto
+- mover Produto
+
+### Prédio (classe concreta que implementa Armazenamento)
 
 Basicamente uma estante que armzena produtos (se comporta  como uma matriz).
 
@@ -74,15 +123,30 @@ Basicamente uma estante que armzena produtos (se comporta  como uma matriz).
 - capacidade máxima de Produtos
 - quantidade de Produtos registrados
 
+#### Métodos
+
+- adicionar Produto
+- retirar Produto
+- mover Produto
+- verificar se apartamento está disponível
 
 
-### Estoque (classe concreta)
+### Estoque (classe concreta que implementa Armazenamento)
 
 Onde os prédio são armazenados.
 
-####  Atributos
+#### Atributos
 
 - Dimensão de Estoque
 - capacidade máxima
 - quantidade total de Produtos registrados
+- Drone
+- Empilhadeira
+
+#### Métodos
+
+- adicionar Produto
+- retirar Produto
+- mover Produto
+- fazer invetário de Produtos
 

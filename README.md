@@ -54,8 +54,8 @@ A definir...
 
 #### Métodos
 
-- A definir...
-
+- A definir método específico...
+- Gets
 
 ### Estante (classe)
 

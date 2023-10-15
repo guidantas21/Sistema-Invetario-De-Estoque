@@ -46,9 +46,6 @@
 
 #### Funções
 
-Dispositivo()
-Dispositivo(id, tipoDeEmbarcado, localizacaoInicial, autonomia, velocidade)
-
 + locomocaoDispostivo()
 + gets
 

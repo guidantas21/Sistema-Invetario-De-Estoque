@@ -62,22 +62,28 @@ Drone para invetário de estoque.
 #### Funções
 
 Drone()
-Drone(id, tipoDeEmbarcado, localizacaoInicial, velocidade)
+Drone(id, tipoDeEmbarcado, localizacaoInicial, autonomia, velocidade)
 
 -void leituraRFID()
 -void locomocaoParaRegiaoDeDescarregamento(localizacaoDoDrone)
-
++locomocaoDispositivo(velocidade, autonomia, movimentacao)
 +ArrayList<> fazerInventario(databasePreCasdastrado){ 
 // o retorno desta função será um array separado por tipo de produtos onde contera;
 nome, quantidadeDeNovosProdutos, id, setorDeDestino
 }
-
++ posicao encontrarProduto(idDoProduto, idDatabase)
 
 ### Empilhadeira (estende dispositivo)
 
 #### Atributos
 
+#### Funções
+Empilhadeira()
+Empilhadeira(id, tipoDeEmbarcado, localizacaoInicial, autonomia, velocidade)
 
+- void statusVazio()
++ int pegarProduto(localizacaoDoProduto)
++ void levarProduto(int verificador)
 
 
 ### Produto (classe abstrata)

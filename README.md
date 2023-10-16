@@ -39,16 +39,15 @@
 #### Atributos
 
 - id
-- modelo
+- tipoDeEmbarcado
+- localizacaoInicial
+- autonomia
+- velocidade
 
+#### Funções
 
-
-### RFID Tag (estende dispositivo)
-
-Identificador de Produtos.
-
-#### Atributos
-- id
++ locomocaoDispostivo()
++ gets
 
 
 ### Drone (estende dispositivo)
@@ -57,17 +56,31 @@ Drone para invetário de estoque.
 
 #### Atributos
 
-- autonomia
-- Localização
+#### Funções
 
+Drone()
+Drone(id, tipoDeEmbarcado, localizacaoInicial, autonomia, velocidade)
 
+-void leituraRFID()
+-void locomocaoParaRegiaoDeDescarregamento(localizacaoDoDrone)
++locomocaoDispositivo(velocidade, autonomia, movimentacao)
++ArrayList<> fazerInventario(databasePreCasdastrado){ 
+// o retorno desta função será um array separado por tipo de produtos onde contera;
+nome, quantidadeDeNovosProdutos, id, setorDeDestino
+}
++ posicao encontrarProduto(idDoProduto, idDatabase)
 
 ### Empilhadeira (estende dispositivo)
 
 #### Atributos
 
-- Localização
+#### Funções
+Empilhadeira()
+Empilhadeira(id, tipoDeEmbarcado, localizacaoInicial, autonomia, velocidade)
 
+- void statusVazio()
++ int pegarProduto(localizacaoDoProduto)
++ void levarProduto(int verificador)
 
 
 ### Produto (classe abstrata)

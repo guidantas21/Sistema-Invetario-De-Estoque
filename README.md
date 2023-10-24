@@ -95,6 +95,13 @@ Pallet que armazena mercadorias.
 - String descrição
 - Position Localização de Produto
 
+#### Funções
+
++ Produto()
++ Produto(int id, String nome, String tipoDeArmazenagem, String descrição)
++ public void setLocalização(Position)
++ public Position getLocalização()
+
 ### Dimensão (classe abstrata)
 
 ### Dimensão de Prédio (estende Dimensão)

@@ -1,15 +1,15 @@
-public abstract class Produto {
-    protected int id;
+public class Produto {
+    protected int id = 0;
     protected String nome;
     protected String tipoDeArmazenagem;
     protected String descricao;
     protected Position localizacaoDeProduto;
 
-    Produto() {
+    public Produto() {
 
     }
 
-    Produto(int id, String nome, String tipoDeArmazenagem, String descricao) {
+    public Produto(int id, String nome, String tipoDeArmazenagem, String descricao) {
         this.id = id;
         this.nome = nome;
         this.tipoDeArmazenagem = tipoDeArmazenagem;
@@ -22,6 +22,10 @@ public abstract class Produto {
 
     public Position getLocalizacaoDeProduto() {
         return localizacaoDeProduto;
+    }
+
+    public int getId() {
+        return id;
     }
 
 }

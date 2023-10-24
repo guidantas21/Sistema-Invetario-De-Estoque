@@ -23,27 +23,28 @@ public class Simulador {
         return matrizAdjacencia;
     }
 
-    public int generetorId(int[][] dataId) {
+    public int[][] ids = {
+            { 45891234, 76540982, 12387645, 89054321, 67543210 },
+            { 23456789, 87651234, 98704523, 54321876, 65783210 },
+            { 31429087, 98762310, 89017645, 45673210, 87654092 },
+            { 12349876, 54321678, 87650912, 65789012, 98126754 },
+            { 45678901, 67894523, 54321987, 89012675, 23456789 },
+            { 12345678, 56781234, 90871234, 43219876, 76541290 },
+            { 56782310, 89012345, 54329876, 34561278, 65431290 },
+            { 78906543, 10987654, 87654321, 98761234, 76543210 }
+
+    };
+
+    public int generetorId() {
         Random gen = new Random();
         int positonSectorOfId = gen.nextInt(8);
         int positonOfProduct = gen.nextInt(5);
 
-        return dataId[positonSectorOfId][positonOfProduct];
+        return ids[positonSectorOfId][positonOfProduct];
     }
 
-    public (String[] args) throws Exception {
+    public void locationDrone() {
 
-        int[][] ids = {
-                { 45891234, 76540982, 12387645, 89054321, 67543210 },
-                { 23456789, 87651234, 98704523, 54321876, 65783210 },
-                { 31429087, 98762310, 89017645, 45673210, 87654092 },
-                { 12349876, 54321678, 87650912, 65789012, 98126754 },
-                { 45678901, 67894523, 54321987, 89012675, 23456789 },
-                { 12345678, 56781234, 90871234, 43219876, 76541290 },
-                { 56782310, 89012345, 54329876, 34561278, 65431290 },
-                { 78906543, 10987654, 87654321, 98761234, 76543210 }
-
-        };
         int rfps = 0;
         int x = 0;
         int y = 0;
@@ -58,7 +59,7 @@ public class Simulador {
                     rfps = 0;
                     break;
                 }
-                System.out.println(generetorId(ids));
+                System.out.println(generetorId());
                 rfps++;
             }
 

@@ -89,12 +89,11 @@ Pallet que armazena mercadorias.
 
 #### Atributos
 
-- id
-- RFID Tag
-- nome
-- descrição
-- Localização de Produto
-
+- int id
+- String nome
+- String tipoDeArmazenagem
+- String descrição
+- Position Localização de Produto
 
 ### Dimensão (classe abstrata)
 

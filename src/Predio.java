@@ -47,4 +47,21 @@ public class Predio {
         return false;
     }
 
+    public boolean retirarProduto(Produto produto) {
+        for (int i = 0; i < altura; i++) {
+            for (int j = 0; j < largura; j++) {
+                if (matrizDeProdutos[i][j].equals(produto)) {
+                    matrizDeProdutos[i][j] = new Produto(0, "", "", "");
+                    quantidadeDeProdutos--;
+                    System.out.println("Produto retirado");
+                    return true;
+                }
+            }
+        }
+
+        System.out.println("Produto não encontrado");
+        return false;
+    }
+
+
 }

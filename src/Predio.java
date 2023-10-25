@@ -74,13 +74,19 @@ public class Predio {
                     + novaLocalizacao.y
                     + ", "
                     + novaLocalizacao.z + ")");
-
         } else {
             System.out.println("Produto não encontrado");
         }
     }
 
-    
+    public boolean apartamentoDisponivel(int linha, int coluna) {
+        if (linha >= 0 && linha < altura && coluna >= 0 && coluna < largura) {
+            return matrizDeProdutos[linha][coluna].getId() == 0;
+        } else {
+            System.out.println("Posição inválida.");
+            return false;
+        }
+    }
 
     public void exibirMatriz() {
         for (int i = 0; i < altura; i++) {
@@ -99,6 +105,5 @@ public class Predio {
             }
         }
     }
-
 
 }

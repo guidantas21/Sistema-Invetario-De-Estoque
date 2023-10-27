@@ -7,8 +7,7 @@ public class Predio {
     private Produto[][] matrizDeProdutos;
     private int capacidadeMaxima;
     private int quantidadeDeProdutos = 0;
-    // private ArrayList<Produto> matrizDeProduto = new ArrayList<>(altura *
-    // largura);
+    private List<Produto> matrizDeProduto = new ArrayList<>(altura * largura);
 
     public Predio() {
 
@@ -45,14 +44,6 @@ public class Predio {
         }
         System.out.println("nao adicionado");
         return false;
-    }
-
-    public int getLargura() {
-        return largura;
-    }
-
-    public int getAltura() {
-        return altura;
     }
 
 }

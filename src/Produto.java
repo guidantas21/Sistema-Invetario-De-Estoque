@@ -28,4 +28,16 @@ public class Produto {
         return id;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public String getTipoDeArmazenagem() {
+        return tipoDeArmazenagem;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
 }

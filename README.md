@@ -136,8 +136,8 @@ Basicamente uma estante que armzena produtos (se comporta  como uma matriz).
 
 #### Atributos
 
-- id
-- Localização do Prédio
+- largura "andares"
+- altura "apartamentos"
 - matriz de Produtos
 - capacidade máxima de Produtos
 - quantidade de Produtos registrados

@@ -1,12 +1,11 @@
 public class Produto {
-    protected int id = 0;
+    protected Integer id = 0;
     protected String nome;
     protected String tipoDeArmazenagem;
     protected String descricao;
     protected Position localizacaoDeProduto;
 
     public Produto() {
-
     }
 
     public Produto(int id, String nome, String tipoDeArmazenagem, String descricao) {

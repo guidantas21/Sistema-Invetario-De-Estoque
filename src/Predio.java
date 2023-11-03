@@ -2,32 +2,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Predio {
-
     private int largura;
     private int altura;
     private Produto[][] matrizDeProdutos;
     private int capacidadeMaxima;
     private int quantidadeDeProdutos = 0;
-    /// private ArrayList<Produto> matrizDeProduto = new ArrayList<>(altura *
-    // largura);
     private List<Produto> produtos = new ArrayList<>();
 
     public Predio() {
-
     }
 
-    public Predio(int a, int l) {
-        altura = a;
-        largura = l;
-        matrizDeProdutos = new Produto[altura][largura];
+    public Predio(int altura, int largura) {
+        this.altura = altura;
+        this.largura = largura;
+        this.capacidadeMaxima = altura * largura;
+        this.matrizDeProdutos = new Produto[altura][largura];
+        inicializarMatrizProdutos();
+    }
 
+    private void inicializarMatrizProdutos() {
         for (int i = 0; i < altura; i++) {
             for (int j = 0; j < largura; j++) {
                 matrizDeProdutos[i][j] = new Produto(0, "", "", "");
             }
         }
-
-        capacidadeMaxima = largura * altura;
     }
 
     public boolean adicionarProduto(Produto produto) {
@@ -37,6 +35,7 @@ public class Predio {
                     if (matrizDeProdutos[i][j].getId() == 0) {
                         System.out.print("teste");
                         matrizDeProdutos[i][j] = produto;
+                        produtos.add(produto);
                         quantidadeDeProdutos++;
                         System.out.println("Adicionado");
                         return true;
@@ -44,18 +43,20 @@ public class Predio {
                 }
             }
         }
-        System.out.println("nao adicionado");
+        System.out.println("Produto não adicionado");
         return false;
     }
 
     public boolean retirarProduto(Produto produto) {
-        for (int i = 0; i < altura; i++) {
-            for (int j = 0; j < largura; j++) {
-                if (matrizDeProdutos[i][j].equals(produto)) {
-                    matrizDeProdutos[i][j] = new Produto(0, "", "", "");
-                    quantidadeDeProdutos--;
-                    System.out.println("Produto retirado");
-                    return true;
+        if (produtos.remove(produto)) {
+            quantidadeDeProdutos--;
+            for (int i = 0; i < altura; i++) {
+                for (int j = 0; j < largura; j++) {
+                    if (matrizDeProdutos[i][j] == produto) {
+                        matrizDeProdutos[i][j] = new Produto(0, "", "", "");
+                        System.out.println("Produto retirado");
+                        return true;
+                    }
                 }
             }
         }
@@ -105,5 +106,4 @@ public class Predio {
             }
         }
     }
-
 }

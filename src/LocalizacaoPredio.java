@@ -1,10 +1,8 @@
-import java.util.Arrays;
-
-public class LocalizacaoDePredio extends Localizacao {
+public class LocalizacaoPredio extends Localizacao {
 
     private String rua;
 
-    public LocalizacaoDePredio(int[] x, int y, String rua) {
+    public LocalizacaoPredio(int[] x, int y, String rua) {
         super(x, y);
         this.rua = rua;
     }
@@ -16,7 +14,7 @@ public class LocalizacaoDePredio extends Localizacao {
     public void setRua (String rua) {
         this.rua = rua;
     }
-    /*@Override
+    /* @Override
     public String toString() {
         return "LocalizacaoPredio{" +
                 "x=" + Arrays.toString(x) +

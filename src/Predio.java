@@ -108,24 +108,6 @@ public class Predio implements Armazenamento{
         }
     }
 
-    public void exibirMatriz() {
-        for (int i = 0; i < altura; i++) {
-            for (int j = 0; j < largura; j++) {
-                Produto produto = matrizDeProdutos[i][j];
-                System.out.println("Apartamento: " + i + ", Andar: " + j);
-                if (produto != null) {
-                    System.out.println("ID: " + produto.getId());
-                    System.out.println("Nome: " + produto.getNome());
-                    System.out.println("Tipo de Armazenagem: " + produto.getTipoDeArmazenagem());
-                    System.out.println("Descrição: " + produto.getDescricao());
-                } else {
-                    System.out.println("Nenhum produto nesta posição.");
-                }
-                System.out.println("----------------------");
-            }
-        }
-    }
-
     public void escreverBackupPredio(String id, Produto[][] matrizDeProdutos) {
         String arquivo = id + ".txt";
 
@@ -164,7 +146,7 @@ public class Predio implements Armazenamento{
                 while ((linha[i] = buffereadReader.readLine()) != null)
                     ;
             }
-            produto = new Produto(linha[0], linha[1], linha[2], linha[3]);
+            produto = new Produto(Integer.parseInt(linha[0]), linha[1], linha[2], linha[3]);
             adicionarProduto(produto);
 
             buffereadReader.close();

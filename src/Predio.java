@@ -8,10 +8,10 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class Predio {
+public class Predio implements Armazenamento{
     private int largura;
     private int altura;
-    private String predioId;
+    private String predioID;
     private Produto[][] matrizDeProdutos;
     private int capacidadeMaxima;
     private int quantidadeDeProdutos = 0;
@@ -20,78 +20,88 @@ public class Predio {
     public Predio() {
     }
 
-    public Predio(int altura, int largura, String predioId) {
-        this.altura = altura;
+    public Predio(int largura, int altura, String predioID) {
         this.largura = largura;
-        this.predioId = predioId;
+        this.altura = altura;
+        this.predioID = predioID;
         this.capacidadeMaxima = altura * largura;
-        this.matrizDeProdutos = new Produto[altura][largura];
-        new File(predioId + ".txt");
+        this.matrizDeProdutos = new Produto[largura][altura];
+        new File(predioID + ".txt");
         inicializarMatrizProdutos();
     }
 
     private void inicializarMatrizProdutos() {
         for (int i = 0; i < altura; i++) {
             for (int j = 0; j < largura; j++) {
-                matrizDeProdutos[i][j] = new Produto("0", "", "", "");
+                matrizDeProdutos[i][j] = new Produto(0, "", "", "");
             }
         }
     }
 
-    public boolean adicionarProduto(Produto produto) {
+    @Override
+    public void adicionarProduto(Produto produto) {
         if (quantidadeDeProdutos < capacidadeMaxima) {
-            for (int i = 0; i < altura; i++) {
-                for (int j = 0; j < largura; j++) {
-                    if (matrizDeProdutos[i][j].getId() == "0") {
+            for (int i = 0; i < largura; i++) {
+                for (int j = 0; j < altura; j++) {
+                    if (matrizDeProdutos[i][j].getId() == 0) {
                         System.out.print("teste");
                         matrizDeProdutos[i][j] = produto;
+                        produto.setLocalizacaoDeProduto(new Position(i, j, 0));
                         quantidadeDeProdutos++;
+                        produtosRecebidos.add(produto);
                         System.out.println("Adicionado");
-                        return true;
+                        return;
                     }
                 }
             }
         }
         System.out.println("Produto não adicionado");
-        return false;
     }
 
-    public boolean retirarProduto(Produto produto) {
-        if (produtosRecebidos.remove(produto)) {
+    @Override
+    public void retirarProduto(Produto produto) {
+        if (produtosRecebidos.contains(produto)) {
+            produtosRecebidos.remove(produto);
             quantidadeDeProdutos--;
-            for (int i = 0; i < altura; i++) {
-                for (int j = 0; j < largura; j++) {
-                    if (matrizDeProdutos[i][j] == produto) {
-                        matrizDeProdutos[i][j] = new Produto("0", "", "", "");
-                        System.out.println("Produto retirado");
-                        return true;
-                    }
-                }
-            }
+
+            Position localizacao = produto.getLocalizacaoDeProduto();
+            int x = localizacao.getX();
+            int y = localizacao.getY();
+
+            matrizDeProdutos[x][y] = new Produto(0, "", "", ""); // Limpar a posição
+            System.out.println("Produto retirado com sucesso.");
+        } else {
+            System.out.println("Produto não encontrado na lista de produtos recebidos.");
         }
-        System.out.println("Produto não encontrado");
-        return false;
     }
 
+    @Override
     public void moverProduto(Produto produto, Position novaLocalizacao) {
         if (produtosRecebidos.contains(produto)) {
-            produto.setLocalizacaoDeProduto(novaLocalizacao);
-            System.out.println("Produto "
-                    + produto.getNome()
-                    + " movido para ("
-                    + novaLocalizacao.x
-                    + ", "
-                    + novaLocalizacao.y
-                    + ", "
-                    + novaLocalizacao.z + ")");
+            Position localizacaoAtual = produto.getLocalizacaoDeProduto();
+            int xAntigo = localizacaoAtual.getX();
+            int yAntigo = localizacaoAtual.getY();
+            int xNovo = novaLocalizacao.getX();
+            int yNovo = novaLocalizacao.getY();
+
+            if (xAntigo >= 0 && xAntigo < largura && yAntigo >= 0 && yAntigo < altura &&
+                    xNovo >= 0 && xNovo < largura && yNovo >= 0 && yNovo < altura) {
+                if (matrizDeProdutos[xAntigo][yAntigo] == produto) {
+                    matrizDeProdutos[xAntigo][yAntigo] = new Produto(0, "", "", ""); // Limpar a posição antiga
+                    matrizDeProdutos[xNovo][yNovo] = produto;
+                    produto.setLocalizacaoDeProduto(novaLocalizacao);
+                    System.out.println("Produto movido para (" + novaLocalizacao.getX() + ", " + novaLocalizacao.getY() + ", " + novaLocalizacao.getZ() + ")");
+                }
+            }
         } else {
-            System.out.println("Produto não encontrado");
+            System.out.println("Produto não encontrado na lista de produtos recebidos.");
         }
     }
 
+
     public boolean apartamentoDisponivel(int linha, int coluna) {
-        if (linha >= 0 && linha < altura && coluna >= 0 && coluna < largura) {
-            return matrizDeProdutos[linha][coluna].getId() == "0";
+        if (linha >= 0 && linha < largura && coluna >= 0 && coluna < altura) {
+            return matrizDeProdutos[linha][coluna] == null;
         } else {
             System.out.println("Posição inválida.");
             return false;

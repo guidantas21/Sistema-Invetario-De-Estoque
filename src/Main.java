@@ -3,7 +3,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Estoque estoque = new Estoque(new DimensaoEstoque(10.0, 5.0, 3.0, 3, 2, 4), 24, new Drone(), new Empilhadeira());
+        Estoque estoque = new Estoque(new DimensaoEstoque(10.0, 5.0, 3.0, 3, 2, 4), 24, new Drone(),
+                new Empilhadeira());
         Scanner scanner = new Scanner(System.in);
 
         int escolha;
@@ -35,7 +36,7 @@ public class Main {
                     System.out.print("Descrição: ");
                     String descricao = scanner.next();
 
-                    Produto produto = new Produto(id, nome, tipoArmazenagem, descricao);
+                    Produto produto = new Produto(id, nome, tipoArmazenagem, descricao, 0, 0, 0);
 
                     estoque.adicionarProduto(produto);
                     break;

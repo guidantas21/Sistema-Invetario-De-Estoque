@@ -15,6 +15,13 @@ public class Produto {
         this.descricao = descricao;
     }
 
+    public void setProduto(String id, String nome, String tipoDeArmazenagem, String descricao) {
+        this.id = id;
+        this.nome = nome;
+        this.tipoDeArmazenagem = tipoDeArmazenagem;
+        this.descricao = descricao;
+    }
+
     public void setLocalizacaoDeProduto(Position localizacaoDeProduto) {
         this.localizacaoDeProduto = localizacaoDeProduto;
     }

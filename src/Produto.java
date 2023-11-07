@@ -1,5 +1,5 @@
 public class Produto {
-    protected Integer id = 0;
+    protected String id;
     protected String nome;
     protected String tipoDeArmazenagem;
     protected String descricao;
@@ -8,7 +8,7 @@ public class Produto {
     public Produto() {
     }
 
-    public Produto(int id, String nome, String tipoDeArmazenagem, String descricao) {
+    public Produto(String id, String nome, String tipoDeArmazenagem, String descricao) {
         this.id = id;
         this.nome = nome;
         this.tipoDeArmazenagem = tipoDeArmazenagem;
@@ -23,7 +23,7 @@ public class Produto {
         return localizacaoDeProduto;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
@@ -24,21 +25,28 @@ public class Main {
                     // Adicionar Produto
                     System.out.println("Informe os detalhes do produto");
                     System.out.print("ID: ");
-                    int id = scanner.nextInt();
+                    String id = scanner.next();
+
                     System.out.print("Nome: ");
                     String nome = scanner.next();
+
                     System.out.print("Tipo de Armazenagem: ");
                     String tipoArmazenagem = scanner.next();
+
                     System.out.print("Descrição: ");
                     String descricao = scanner.next();
+
                     Produto produto = new Produto(id, nome, tipoArmazenagem, descricao);
+
                     estoque.adicionarProduto(produto);
                     break;
                 case 2:
                     // Retirar Produto
                     System.out.print("Informe o ID do produto a ser retirado: ");
-                    int idRetirada = scanner.nextInt();
+                    String idRetirada = scanner.next();
+
                     Produto produtoRetirada = encontrarProdutoPorID(estoque, idRetirada);
+
                     if (produtoRetirada != null) {
                         estoque.retirarProduto(produtoRetirada);
                     } else {
@@ -65,9 +73,9 @@ public class Main {
     }
 
     // Método auxiliar para encontrar um produto no estoque pelo ID
-    private static Produto encontrarProdutoPorID(Estoque estoque, int id) {
+    private static Produto encontrarProdutoPorID(Estoque estoque, String id) {
         for (Produto produto : estoque.getProdutosNoEstoque()) {
-            if (produto.getId() == id) {
+            if (Objects.equals(produto.getId(), id)) {
                 return produto;
             }
         }

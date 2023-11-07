@@ -1,4 +1,4 @@
-public class Produto {
+public class Produto extends Position {
     protected String id;
     protected String nome;
     protected String tipoDeArmazenagem;
@@ -6,28 +6,15 @@ public class Produto {
     protected Position localizacaoDeProduto;
 
     public Produto() {
+        super();
     }
 
-    public Produto(String id, String nome, String tipoDeArmazenagem, String descricao) {
+    public Produto(String id, String nome, String tipoDeArmazenagem, String descricao, int x, int y, int z) {
+        super(x, y, z);
         this.id = id;
         this.nome = nome;
         this.tipoDeArmazenagem = tipoDeArmazenagem;
         this.descricao = descricao;
-    }
-
-    public void setProduto(String id, String nome, String tipoDeArmazenagem, String descricao) {
-        this.id = id;
-        this.nome = nome;
-        this.tipoDeArmazenagem = tipoDeArmazenagem;
-        this.descricao = descricao;
-    }
-
-    public void setLocalizacaoDeProduto(Position localizacaoDeProduto) {
-        this.localizacaoDeProduto = localizacaoDeProduto;
-    }
-
-    public Position getLocalizacaoDeProduto() {
-        return localizacaoDeProduto;
     }
 
     public String getId() {

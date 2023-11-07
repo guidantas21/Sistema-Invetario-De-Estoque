@@ -1,4 +1,18 @@
 public class Position {
+    protected int x;
+    protected int y;
+    protected int z;
+
+    public Position() {
+
+    }
+
+    public Position(int x, int y, int z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
     public int getX() {
         return x;
     }
@@ -23,13 +37,4 @@ public class Position {
         this.z = z;
     }
 
-    protected int x;
-    protected int y;
-    protected int z;
-
-    public Position(int x, int y, int z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
 }

@@ -117,7 +117,12 @@ public class Predio extends Produto implements Armazenamento {
                     String infoToBackup = matrizDeProdutos[i][j].getId() +
                             "\n" + matrizDeProdutos[i][j].getNome() +
                             "\n" + matrizDeProdutos[i][j].getTipoDeArmazenagem() +
-                            "\n" + matrizDeProdutos[i][j].getDescricao();
+                            "\n" + matrizDeProdutos[i][j].getDescricao() +
+                            "\n" + String.valueOf(matrizDeProdutos[i][j].x) +
+                            "\n" + String.valueOf(matrizDeProdutos[i][j].y) +
+                            "\n" + String.valueOf(matrizDeProdutos[i][j].z) +
+                            "\n";
+
                     byte[] bytes = infoToBackup.getBytes();
 
                     arquivoBackupEscrita.write(bytes);
@@ -137,14 +142,21 @@ public class Predio extends Produto implements Armazenamento {
             FileReader fileReader = new FileReader(arquivo);
             BufferedReader buffereadReader = new BufferedReader(fileReader);
 
-            String[] linha = new String[4];
+            String[] linha = new String[7];
             Produto produto;
 
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < 5; i++) {
                 while ((linha[i] = buffereadReader.readLine()) != null)
                     ;
             }
-            produto = new Produto(linha[0], linha[1], linha[2], linha[3]);
+            produto = new Produto(linha[0],
+                    linha[1],
+                    linha[2],
+                    linha[3],
+                    Integer.parseInt(linha[4]),
+                    Integer.parseInt(linha[5]),
+                    Integer.parseInt(linha[6]));
+
             adicionarProduto(produto);
 
             buffereadReader.close();

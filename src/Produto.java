@@ -33,4 +33,11 @@ public class Produto extends Position {
         return descricao;
     }
 
+    public Position getLocalizacaoDeProduto() {
+        return localizacaoDeProduto;
+    }
+
+    public void setLocalizacaoDeProduto(Position localizacaoDeProduto) {
+        this.localizacaoDeProduto = localizacaoDeProduto;
+    }
 }

@@ -49,8 +49,37 @@ public class Estoque implements Armazenamento {
 
     @Override
     public void moverProduto(Produto produto, Position novaLocalizacao) {
-        // Implementar lógica para mover um produto dentro do estoque
-        System.out.println("Mover produto para " + novaLocalizacao);
+        // Verifica se o produto existe no estoque
+        if (produtosNoEstoque.contains(produto)) {
+            Position localizacaoAtual = produto.getLocalizacaoDeProduto();
+            int xAntigo = localizacaoAtual.getX();
+            int yAntigo = localizacaoAtual.getY();
+            int zAntigo = localizacaoAtual.getZ();
+
+            int xNovo = novaLocalizacao.getX();
+            int yNovo = novaLocalizacao.getY();
+            int zNovo = novaLocalizacao.getZ();
+
+            // Verifica se a nova localização é válida dentro da dimensão do estoque
+            if (xNovo >= 0 && xNovo < dimensaoEstoque.getLargura() &&
+                    yNovo >= 0 && yNovo < dimensaoEstoque.getAltura() &&
+                    zNovo >= 0 && zNovo < dimensaoEstoque.getProfundidade()) {
+                // Remove o produto da localização anterior
+                produtosNoEstoque.remove(produto);
+
+                // Atualiza a localização do produto
+                produto.setLocalizacaoDeProduto(novaLocalizacao);
+
+                // Adiciona o produto na nova localização
+                produtosNoEstoque.add(produto);
+
+                System.out.println("Produto movido para (" + xNovo + ", " + yNovo + ", " + zNovo + ")");
+            } else {
+                System.out.println("Nova localização inválida. O produto não foi movido.");
+            }
+        } else {
+            System.out.println("Produto não encontrado no estoque. Não é possível movê-lo.");
+        }
     }
 
     public void fazerInventarioDeProdutos() {

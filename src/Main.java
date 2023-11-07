@@ -14,10 +14,9 @@ public class Main {
             System.out.println("2. Retirar Produto");
             System.out.println("3. Mover Produto");
             System.out.println("4. Fazer Inventário de Produtos");
-            System.out.println("0. Sair");
+            System.out.println("0. Sair\n");
             System.out.print("Insira a opção selecionada: ");
             escolha = scanner.nextInt();
-
             System.out.println();
 
             switch (escolha) {
@@ -55,8 +54,24 @@ public class Main {
                     break;
                 case 3:
                     // Mover Produto
-                    // Implemente a lógica para mover um produto dentro do estoque
-                    System.out.println("Implemente a lógica para mover um produto.");
+                    System.out.print("Informe o ID do produto a ser movido: ");
+                    String idMovimentacao = scanner.next();
+                    Produto produtoMovimentacao = encontrarProdutoPorID(estoque, idMovimentacao);
+
+                    if (produtoMovimentacao != null) {
+                        System.out.println("Informe a nova posição (X, Y, Z) para o produto (Exemplo: '1 2 3'): ");
+                        System.out.print("X: ");
+                        int x = scanner.nextInt();
+                        System.out.print("Y: ");
+                        int y = scanner.nextInt();
+                        System.out.print("Z: ");
+                        int z = scanner.nextInt();
+
+                        Position novaLocalizacao = new Position(x, y, z);
+                        estoque.moverProduto(produtoMovimentacao, novaLocalizacao);
+                    } else {
+                        System.out.println("Produto não encontrado no estoque.");
+                    }
                     break;
                 case 4:
                     // Fazer Inventário de Produtos

@@ -1,4 +1,4 @@
-# Gerenciamento de Estoque com Drone
+# Gerenciamento de Armazenamento.Estoque com Dispositivos.Drone
 
 ## Requistos do Trabalho
 
@@ -34,7 +34,7 @@
 - apartamento
 
 
-### Dispositivo (classe abstrata)
+### Dispositivos.Dispositivo (classe abstrata)
 
 #### Atributos
 
@@ -50,16 +50,16 @@
 + gets
 
 
-### Drone (estende dispositivo)
+### Dispositivos.Drone (estende dispositivo)
 
-Drone para invetário de estoque.
+Dispositivos.Drone para invetário de estoque.
 
 #### Atributos
 
 #### Funções
 
-Drone()
-Drone(id, tipoDeEmbarcado, localizacaoInicial, autonomia, velocidade)
+Dispositivos.Drone()
+Dispositivos.Drone(id, tipoDeEmbarcado, localizacaoInicial, autonomia, velocidade)
 
 -void leituraRFID()
 -void locomocaoParaRegiaoDeDescarregamento(localizacaoDoDrone)
@@ -70,13 +70,13 @@ nome, quantidadeDeNovosProdutos, id, setorDeDestino
 }
 + posicao encontrarProduto(idDoProduto, idDatabase)
 
-### Empilhadeira (estende dispositivo)
+### Dispositivos.Empilhadeira (estende dispositivo)
 
 #### Atributos
 
 #### Funções
-Empilhadeira()
-Empilhadeira(id, tipoDeEmbarcado, localizacaoInicial, autonomia, velocidade)
+Dispositivos.Empilhadeira()
+Dispositivos.Empilhadeira(id, tipoDeEmbarcado, localizacaoInicial, autonomia, velocidade)
 
 - void statusVazio()
 + int pegarProduto(localizacaoDoProduto)
@@ -93,14 +93,14 @@ Pallet que armazena mercadorias.
 - String nome
 - String tipoDeArmazenagem
 - String descrição
-- Position Localização de Produto
+- Posicao Localização de Produto
 
 #### Funções
 
 + Produto()
 + Produto(int id, String nome, String tipoDeArmazenagem, String descrição)
-+ public void setLocalização(Position)
-+ public Position getLocalização()
++ public void setLocalização(Posicao)
++ public Posicao getLocalização()
 
 ### Dimensão (classe abstrata)
 
@@ -111,7 +111,7 @@ Pallet que armazena mercadorias.
 - número de andares
 - número de apartamentos por andar
 
-### Dimensão de Estoque (estende Dimensão)
+### Dimensão de Armazenamento.Estoque (estende Dimensão)
 
 #### Atributos
 
@@ -120,7 +120,7 @@ Pallet que armazena mercadorias.
 - número de apartamentos por andar dos Prédios
 
 
-### Armazenamento (interface)
+### Armazenamento.Armazenamento (interface)
 
 Contrato para classes que armazenam Produtos.
 
@@ -130,7 +130,7 @@ Contrato para classes que armazenam Produtos.
 - retirar Produto
 - mover Produto
 
-### Prédio (classe concreta que implementa Armazenamento)
+### Prédio (classe concreta que implementa Armazenamento.Armazenamento)
 
 Basicamente uma estante que armzena produtos (se comporta  como uma matriz).
 
@@ -150,17 +150,17 @@ Basicamente uma estante que armzena produtos (se comporta  como uma matriz).
 - verificar se apartamento está disponível
 
 
-### Estoque (classe concreta que implementa Armazenamento)
+### Armazenamento.Estoque (classe concreta que implementa Armazenamento.Armazenamento)
 
 Onde os prédio são armazenados.
 
 #### Atributos
 
-- Dimensão de Estoque
+- Dimensão de Armazenamento.Estoque
 - capacidade máxima
 - quantidade total de Produtos registrados
-- Drone
-- Empilhadeira
+- Dispositivos.Drone
+- Dispositivos.Empilhadeira
 
 #### Métodos
 

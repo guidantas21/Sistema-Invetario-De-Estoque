@@ -1,3 +1,7 @@
+package Localizacoes;
+
+import Localizacoes.Localizacao;
+
 public class LocalizacaoPredio extends Localizacao {
 
     private String rua;
@@ -16,7 +20,7 @@ public class LocalizacaoPredio extends Localizacao {
     }
     /* @Override
     public String toString() {
-        return "LocalizacaoPredio{" +
+        return "Localizacoes.LocalizacaoPredio{" +
                 "x=" + Arrays.toString(x) +
                 ", y=" + y +
                 ", rua='" + rua + '\'' +

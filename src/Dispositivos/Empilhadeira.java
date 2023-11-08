@@ -1,3 +1,7 @@
+package Dispositivos;
+
+import Dispositivos.Dispositivo;
+
 public class Empilhadeira extends Dispositivo {
     private boolean emOperacao;
     private Produto produtoCarregado;
@@ -14,13 +18,13 @@ public class Empilhadeira extends Dispositivo {
     // Método para iniciar a operação da empilhadeira
     public void iniciarOperacao() {
         emOperacao = true;
-        System.out.println("Empilhadeira iniciou a operação.");
+        System.out.println("Dispositivos.Empilhadeira iniciou a operação.");
     }
 
     // Método para parar a operação da empilhadeira
     public void pararOperacao() {
         emOperacao = false;
-        System.out.println("Empilhadeira parou a operação.");
+        System.out.println("Dispositivos.Empilhadeira parou a operação.");
     }
 
     // Método para carregar um produto na empilhadeira

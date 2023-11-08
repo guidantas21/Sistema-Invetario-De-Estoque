@@ -1,3 +1,7 @@
+package Dimensoes;
+
+import Dimensoes.Dimensao;
+
 public class DimensaoPredio extends Dimensao {
     private int numAndares;
     private int numApartamentosPorAndar;

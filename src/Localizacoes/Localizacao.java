@@ -1,3 +1,5 @@
+package Localizacoes;
+
 public abstract class Localizacao {
     protected int[] x;
     protected int y;

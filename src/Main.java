@@ -1,3 +1,8 @@
+import Armazenamento.Estoque;
+import Dimensoes.DimensaoEstoque;
+import Dispositivos.Drone;
+import Dispositivos.Empilhadeira;
+
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -68,7 +73,7 @@ public class Main {
                         System.out.print("Z: ");
                         int z = scanner.nextInt();
 
-                        Position novaLocalizacao = new Position(x, y, z);
+                        Posicao novaLocalizacao = new Posicao(x, y, z);
                         estoque.moverProduto(produtoMovimentacao, novaLocalizacao);
                     } else {
                         System.out.println("Produto não encontrado no estoque.");

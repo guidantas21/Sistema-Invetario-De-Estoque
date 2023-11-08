@@ -1,3 +1,5 @@
+package Armazenamento;
+
 public interface Armazenamento {
     void adicionarProduto(Produto produto);
 

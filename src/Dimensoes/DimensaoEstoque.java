@@ -1,3 +1,7 @@
+package Dimensoes;
+
+import Dimensoes.Dimensao;
+
 public class DimensaoEstoque extends Dimensao {
     private int numPredios;
     private int numAndaresPredios;

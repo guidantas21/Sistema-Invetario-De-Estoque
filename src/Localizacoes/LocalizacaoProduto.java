@@ -1,4 +1,6 @@
-import java.util.Arrays;
+package Localizacoes;
+
+import Localizacoes.Localizacao;
 
 public class LocalizacaoProduto extends Localizacao {
 
@@ -43,7 +45,7 @@ public class LocalizacaoProduto extends Localizacao {
 
     /*@Override
     public String toString() {
-        return "LocalizacaoProduto{" +
+        return "Localizacoes.LocalizacaoProduto{" +
                 "x=" + Arrays.toString(x) +
                 ", y=" + y +
                 ", rua='" + rua + '\'' +

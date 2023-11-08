@@ -1,7 +1,12 @@
 package Armazenamento;
 
+import Produto.*;
+
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import Posicao.Posicao;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -47,11 +52,8 @@ public class Predio extends Produto implements Armazenamento {
         if (quantidadeDeProdutos < capacidadeMaxima) {
             for (Iterator<ArrayList<Produto>> itMatriz = matrizDeProdutos.iterator(); itMatriz.hasNext();) {
                 for (Iterator<Produto> itList = itMatriz.next().iterator(); itList.hasNext();) {
-                    if (itList.next().id.equals("0")) {
-                        itList.next().id = produto.id;
-                        itList.next().nome = produto.nome;
-                        itList.next().tipoDeArmazenagem = produto.tipoDeArmazenagem;
-                        itList.next().descricao = produto.descricao;
+                    if (itList.next().getId().equals("0")) {
+                        itList.next().setProduto(id, nome, tipoDeArmazenagem, descricao);
                         return;
                     }
                 }
@@ -76,7 +78,7 @@ public class Predio extends Produto implements Armazenamento {
     }
 
     @Override
-    public void moverProduto(Produto produto, Position novaLocalizacao) {
+    public void moverProduto(Produto produto, Posicao novaLocalizacao) {
         // if (produtosRecebidos.contains(produto)) {
         // Position localizacaoAtual = produto.getLocalizacaoDeProduto();
         // int xAntigo = localizacaoAtual.getX();
@@ -120,9 +122,9 @@ public class Predio extends Produto implements Armazenamento {
                             "\n" + matrizDeProdutos[i][j].getNome() +
                             "\n" + matrizDeProdutos[i][j].getTipoDeArmazenagem() +
                             "\n" + matrizDeProdutos[i][j].getDescricao() +
-                            "\n" + String.valueOf(matrizDeProdutos[i][j].x) +
-                            "\n" + String.valueOf(matrizDeProdutos[i][j].y) +
-                            "\n" + String.valueOf(matrizDeProdutos[i][j].z) +
+                            "\n" + String.valueOf(matrizDeProdutos[i][j].getX()) +
+                            "\n" + String.valueOf(matrizDeProdutos[i][j].getY()) +
+                            "\n" + String.valueOf(matrizDeProdutos[i][j].getZ()) +
                             "\n";
 
                     byte[] bytes = infoToBackup.getBytes();
@@ -176,7 +178,7 @@ public class Predio extends Produto implements Armazenamento {
                     Produto espaco = andar.get(j);
                     if (espaco.getId().equals("0")) {
                         andar.set(j, produto);
-                        produto.setLocalizacaoDeProduto(new Position(i, j, 0));
+                        produto.setLocalizacaoDeProduto(new Posicao(i, j, 0));
                         quantidadeDeProdutos++;
                         return true;
                     }

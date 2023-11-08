@@ -6,11 +6,11 @@ public class Drone extends Dispositivo {
 
     private boolean verify;
 
-    Drone() {
+    public Drone() {
 
     }
 
-    Drone(int id, String tipoDeEmbarcado, Position localizcaoInicial, int autonomia, int velocidade) {
+    public Drone(int id, String tipoDeEmbarcado, Position localizcaoInicial, int autonomia, int velocidade) {
         super(id, tipoDeEmbarcado, localizcaoInicial, autonomia, velocidade);
 
     }

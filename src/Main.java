@@ -2,6 +2,8 @@ import Armazenamento.Estoque;
 import Dimensoes.DimensaoEstoque;
 import Dispositivos.Drone;
 import Dispositivos.Empilhadeira;
+import Posicao.Posicao;
+import Produto.Produto;
 
 import java.util.Objects;
 import java.util.Scanner;

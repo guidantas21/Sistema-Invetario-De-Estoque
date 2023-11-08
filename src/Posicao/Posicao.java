@@ -1,3 +1,5 @@
+package Posicao;
+
 public class Posicao {
     protected int x;
     protected int y;

@@ -1,5 +1,9 @@
 package Armazenamento;
 
+import Dispositivos.*;
+import Produto.*;
+import Posicao.*;
+
 import Armazenamento.Armazenamento;
 import Dimensoes.Dimensao;
 
@@ -53,10 +57,10 @@ public class Estoque implements Armazenamento {
     }
 
     @Override
-    public void moverProduto(Produto produto, Position novaLocalizacao) {
+    public void moverProduto(Produto produto, Posicao novaLocalizacao) {
         // Verifica se o produto existe no estoque
         if (produtosNoEstoque.contains(produto)) {
-            Position localizacaoAtual = produto.getLocalizacaoDeProduto();
+            Posicao localizacaoAtual = produto.getLocalizacaoDeProduto();
             int xAntigo = localizacaoAtual.getX();
             int yAntigo = localizacaoAtual.getY();
             int zAntigo = localizacaoAtual.getZ();
@@ -94,7 +98,9 @@ public class Estoque implements Armazenamento {
             System.out.println("Nome: " + produto.getNome());
             System.out.println("Tipo de Armazenagem: " + produto.getTipoDeArmazenagem());
             System.out.println("Descrição: " + produto.getDescricao());
-            System.out.println("Localização: " + produto.getLocalizacaoDeProduto().x + ", " + produto.getLocalizacaoDeProduto().y);
+            System.out.println(
+                    "Localização: " + produto.getLocalizacaoDeProduto().getX() + ", "
+                            + produto.getLocalizacaoDeProduto().getY());
             System.out.println("----------------------");
         }
         System.out.println("Quantidade total de produtos no estoque: " + quantidadeTotalProdutosRegistrados);

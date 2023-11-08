@@ -1,17 +1,19 @@
 package Dispositivos;
 
+import Posicao.Posicao;
+
 public abstract class Dispositivo {
     protected int id;
     protected String tipoDeEmbarcado;
-    protected Position localizacaoInicial;
+    protected Posicao localizacaoInicial;
     protected int autonomia;
     protected int velocidade;
 
-    Dispositivo() {
+    public Dispositivo() {
 
     }
 
-    Dispositivo(int id, String tipoDeEmbarcado, Position localizacaoInicial, int autonomia, int velocidade) {
+    public Dispositivo(int id, String tipoDeEmbarcado, Posicao localizacaoInicial, int autonomia, int velocidade) {
         this.id = id;
         this.tipoDeEmbarcado = tipoDeEmbarcado;
         this.localizacaoInicial.x = localizacaoInicial.x;

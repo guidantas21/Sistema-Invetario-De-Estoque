@@ -6,7 +6,7 @@ public class DimensaoPredio extends Dimensao {
     private int numAndares;
     private int numApartamentosPorAndar;
 
-    public DimensaoPredio(double largura, double altura, double profundidade, int numAndares, int numApartamentosPorAndar) {
+    public DimensaoPredio(int largura, int altura, int profundidade, int numAndares, int numApartamentosPorAndar) {
         super(largura, altura, profundidade);
         this.numAndares = numAndares;
         this.numApartamentosPorAndar = numApartamentosPorAndar;

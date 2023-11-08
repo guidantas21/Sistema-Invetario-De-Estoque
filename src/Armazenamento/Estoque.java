@@ -1,10 +1,8 @@
 package Armazenamento;
 
-import Dispositivos.*;
 import Produto.*;
 import Posicao.*;
 
-import Armazenamento.Armazenamento;
 import Dimensoes.Dimensao;
 
 import java.util.ArrayList;
@@ -13,21 +11,37 @@ import java.util.List;
 public class Estoque implements Armazenamento {
     private Dimensao dimensaoEstoque;
     private int capacidadeMaxima;
-    private int quantidadeTotalProdutosRegistrados;
-    private Drone drone;
-    private Empilhadeira empilhadeira;
-    private List<Produto> produtosNoEstoque;
-
+    private int quantidadeProdutosRegistrados;
+    private ArrayList<Predio> predios;
+    private ArrayList<Produto> produtosNoEstoque;
     public Estoque() {
     }
 
-    public Estoque(Dimensao dimensaoEstoque, int capacidadeMaxima, Drone drone, Empilhadeira empilhadeira) {
+    public Estoque(Dimensao dimensaoEstoque) {
         this.dimensaoEstoque = dimensaoEstoque;
-        this.capacidadeMaxima = capacidadeMaxima;
-        this.quantidadeTotalProdutosRegistrados = 0;
-        this.drone = drone;
-        this.empilhadeira = empilhadeira;
-        this.produtosNoEstoque = new ArrayList<>();
+        this.capacidadeMaxima = this.dimensaoEstoque.getVolume();
+
+        this.predios = new ArrayList<>(dimensaoEstoque.getLargura());
+        produtosNoEstoque = new ArrayList<>(capacidadeMaxima);
+
+        for (int i = 0; i < dimensaoEstoque.getProfundidade(); i++) {
+            this.predios.add(new Predio(dimensaoEstoque.getAltura(), dimensaoEstoque.getLargura(), "definir"));
+        }
+    }
+
+    public Posicao alocarProduto() {
+        for (int i = 0; i < dimensaoEstoque.getProfundidade(); i++) {
+            Posicao localizacaoPredio = predios.get(i).getLocalizacaoDisponivel();
+
+            if (localizacaoPredio != null) {
+                return new Posicao(localizacaoPredio.getAndar(), localizacaoPredio.getApartamento(), i);
+            }
+        }
+        return null;
+    }
+
+    public boolean isEstoqueDisponivel() {
+        return this.quantidadeProdutosRegistrados < this.capacidadeMaxima;
     }
 
     // Método para acessar a lista de produtos no estoque
@@ -37,9 +51,17 @@ public class Estoque implements Armazenamento {
 
     @Override
     public void adicionarProduto(Produto produto) {
-        if (quantidadeTotalProdutosRegistrados < capacidadeMaxima) {
-            produtosNoEstoque.add(produto);
-            quantidadeTotalProdutosRegistrados++;
+        if (isEstoqueDisponivel()) {
+            Posicao localizacaoProduto = alocarProduto();
+
+            if (localizacaoProduto != null) {
+                produto.setPosicao(localizacaoProduto);
+                produtosNoEstoque.add(produto);
+
+                predios.get(localizacaoProduto.getPredio()).adicionarProduto(produto);
+
+                quantidadeProdutosRegistrados++;
+            }
             System.out.println("Produto adicionado ao estoque com sucesso.");
         } else {
             System.out.println("Capacidade máxima do estoque atingida. Não é possível adicionar mais produtos.");
@@ -49,7 +71,7 @@ public class Estoque implements Armazenamento {
     @Override
     public void retirarProduto(Produto produto) {
         if (produtosNoEstoque.remove(produto)) {
-            quantidadeTotalProdutosRegistrados--;
+            quantidadeProdutosRegistrados--;
             System.out.println("Produto retirado do estoque com sucesso.");
         } else {
             System.out.println("Produto não encontrado no estoque.");
@@ -60,14 +82,14 @@ public class Estoque implements Armazenamento {
     public void moverProduto(Produto produto, Posicao novaLocalizacao) {
         // Verifica se o produto existe no estoque
         if (produtosNoEstoque.contains(produto)) {
-            Posicao localizacaoAtual = produto.getLocalizacaoDeProduto();
-            int xAntigo = localizacaoAtual.getX();
-            int yAntigo = localizacaoAtual.getY();
-            int zAntigo = localizacaoAtual.getZ();
+            Posicao localizacaoAtual = produto.getPosicao();
+            int xAntigo = localizacaoAtual.getAndar();
+            int yAntigo = localizacaoAtual.getApartamento();
+            int zAntigo = localizacaoAtual.getPredio();
 
-            int xNovo = novaLocalizacao.getX();
-            int yNovo = novaLocalizacao.getY();
-            int zNovo = novaLocalizacao.getZ();
+            int xNovo = novaLocalizacao.getAndar();
+            int yNovo = novaLocalizacao.getApartamento();
+            int zNovo = novaLocalizacao.getPredio();
 
             // Verifica se a nova localização é válida dentro da dimensão do estoque
             if (xNovo >= 0 && xNovo < dimensaoEstoque.getLargura() &&
@@ -77,7 +99,7 @@ public class Estoque implements Armazenamento {
                 produtosNoEstoque.remove(produto);
 
                 // Atualiza a localização do produto
-                produto.setLocalizacaoDeProduto(novaLocalizacao);
+                produto.setPosicao(novaLocalizacao);
 
                 // Adiciona o produto na nova localização
                 produtosNoEstoque.add(produto);
@@ -94,15 +116,18 @@ public class Estoque implements Armazenamento {
     public void fazerInventarioDeProdutos() {
         System.out.println("Inventário de Produtos no Armazenamento.Estoque:");
         for (Produto produto : produtosNoEstoque) {
-            System.out.println("ID: " + produto.getId());
-            System.out.println("Nome: " + produto.getNome());
-            System.out.println("Tipo de Armazenagem: " + produto.getTipoDeArmazenagem());
-            System.out.println("Descrição: " + produto.getDescricao());
-            System.out.println(
-                    "Localização: " + produto.getLocalizacaoDeProduto().getX() + ", "
-                            + produto.getLocalizacaoDeProduto().getY());
-            System.out.println("----------------------");
+            if (produto.getId() != null) {
+                System.out.println("ID: " + produto.getId());
+                System.out.println("Nome: " + produto.getNome());
+                System.out.println("Tipo de Armazenagem: " + produto.getTipoDeArmazenagem());
+                System.out.println("Descrição: " + produto.getDescricao());
+                System.out.println("Andar: " + produto.getPosicao().getAndar());
+                System.out.println("Apartamento: " + produto.getPosicao().getApartamento());
+                System.out.println("Predio: " + produto.getPosicao().getPredio());
+
+                System.out.println("----------------------");
+            }
         }
-        System.out.println("Quantidade total de produtos no estoque: " + quantidadeTotalProdutosRegistrados);
+        System.out.println("Quantidade total de produtos no estoque: " + quantidadeProdutosRegistrados);
     }
 }

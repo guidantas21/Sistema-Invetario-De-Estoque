@@ -1,42 +1,42 @@
 package Posicao;
 
 public class Posicao {
-    protected int x;
-    protected int y;
-    protected int z;
+    protected int andar;
+    protected int apartamento;
+    protected int predio;
 
     public Posicao() {
 
     }
 
-    public Posicao(int x, int y, int z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+    public Posicao(int andar, int apartamento, int predio) {
+        this.andar = andar;
+        this.apartamento = apartamento;
+        this.predio = predio;
     }
 
-    public int getX() {
-        return x;
+    public int getAndar() {
+        return andar;
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public void setAndar(int andar) {
+        this.andar = andar;
     }
 
-    public int getY() {
-        return y;
+    public int getApartamento() {
+        return apartamento;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public void setApartamento(int apartamento) {
+        this.apartamento = apartamento;
     }
 
-    public int getZ() {
-        return z;
+    public int getPredio() {
+        return predio;
     }
 
-    public void setZ(int z) {
-        this.z = z;
+    public void setPredio(int predio) {
+        this.predio = predio;
     }
 
 }

@@ -7,14 +7,13 @@ public class Produto extends Posicao {
     protected String nome;
     protected String tipoDeArmazenagem;
     protected String descricao;
-    protected Posicao localizacaoDeProduto;
+    protected Posicao posicao;
 
     public Produto() {
         super();
     }
 
-    public Produto(String id, String nome, String tipoDeArmazenagem, String descricao, int x, int y, int z) {
-        super(x, y, z);
+    public Produto(String id, String nome, String tipoDeArmazenagem, String descricao) {
         this.id = id;
         this.nome = nome;
         this.tipoDeArmazenagem = tipoDeArmazenagem;
@@ -44,11 +43,11 @@ public class Produto extends Posicao {
         return descricao;
     }
 
-    public Posicao getLocalizacaoDeProduto() {
-        return localizacaoDeProduto;
+    public Posicao getPosicao() {
+        return posicao;
     }
 
-    public void setLocalizacaoDeProduto(Posicao localizacaoDeProduto) {
-        this.localizacaoDeProduto = localizacaoDeProduto;
+    public void setPosicao(Posicao posicao) {
+        this.posicao = posicao;
     }
 }

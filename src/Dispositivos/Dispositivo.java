@@ -14,7 +14,7 @@ public abstract class Dispositivo extends Posicao {
     }
 
     public Dispositivo(int id, String tipoDeEmbarcado, Posicao localizacaoInicial, int autonomia, int velocidade) {
-        super(localizacaoInicial.getX(), localizacaoInicial.getY(), localizacaoInicial.getZ());
+        super(localizacaoInicial.getAndar(), localizacaoInicial.getApartamento(), localizacaoInicial.getPredio());
         this.id = id;
         this.tipoDeEmbarcado = tipoDeEmbarcado;
         this.autonomia = autonomia;

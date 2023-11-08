@@ -46,16 +46,16 @@ public class Predio extends Produto implements Armazenamento {
         }
     }
 
-    public boolean isPredioDisponivel() {
+    public boolean predioDisponivel() {
         return this.quantidadeDeProdutos < this.capacidadeMaxima;
     }
 
     public Posicao getLocalizacaoDisponivel() {
-        if (isPredioDisponivel()) {
+        if (predioDisponivel()) {
             for (int i = 0; i < altura; i++) {
                 for (int j = 0; j < largura; j++) {
                     if (matrizDeProdutos.get(i).get(j) == null) {
-                        return new Posicao(i,j,0);
+                        return new Posicao(i, j, 0);
                     }
                 }
             }
@@ -65,7 +65,7 @@ public class Predio extends Produto implements Armazenamento {
 
     @Override
     public void adicionarProduto(Produto produto) {
-        if (isPredioDisponivel()) {
+        if (predioDisponivel()) {
             for (int i = 0; i < altura; i++) {
                 for (int j = 0; j < largura; j++) {
                     if (matrizDeProdutos.get(i).get(j) == null) {
@@ -75,8 +75,7 @@ public class Predio extends Produto implements Armazenamento {
                 }
             }
             System.out.println("Produto Adicionado no predio.");
-        }
-        else {
+        } else {
             System.out.println("Predio cheio.");
         }
     }
@@ -112,7 +111,8 @@ public class Predio extends Produto implements Armazenamento {
         // posição antiga
         // matrizDeProdutos[xNovo][yNovo] = produto;
         // produto.setPosicao(novaLocalizacao);
-        // System.out.println("Produto movido para (" + novaLocalizacao.getAndar() + ", " +
+        // System.out.println("Produto movido para (" + novaLocalizacao.getAndar() + ",
+        // " +
         // novaLocalizacao.getApartamento() + ", " + novaLocalizacao.getPredio() + ")");
         // }
         // }
@@ -129,81 +129,98 @@ public class Predio extends Produto implements Armazenamento {
             return false;
         }
     }
-//
-//    public void escreverBackupPredio(String id, Produto[][] matrizDeProdutos) {
-//        String arquivo = id + ".txt";
-//
-//        try (FileOutputStream arquivoBackupEscrita = new FileOutputStream(arquivo)) {
-//
-//            for (int i = 0; i < altura; i++) {
-//                for (int j = 0; j < largura; j++) {
-//                    String infoToBackup = matrizDeProdutos[i][j].getId() +
-//                            "\n" + matrizDeProdutos[i][j].getNome() +
-//                            "\n" + matrizDeProdutos[i][j].getTipoDeArmazenagem() +
-//                            "\n" + matrizDeProdutos[i][j].getDescricao() +
-//                            "\n" + String.valueOf(matrizDeProdutos[i][j].getAndar()) +
-//                            "\n" + String.valueOf(matrizDeProdutos[i][j].getApartamento()) +
-//                            "\n" + String.valueOf(matrizDeProdutos[i][j].getPredio()) +
-//                            "\n";
-//
-//                    byte[] bytes = infoToBackup.getBytes();
-//
-//                    arquivoBackupEscrita.write(bytes);
-//
-//                }
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
-//
-//    public void lerBackupPredio(String id) {
-//        String arquivo = id + ".txt";
-//
-//        try {
-//            FileReader fileReader = new FileReader(arquivo);
-//            BufferedReader buffereadReader = new BufferedReader(fileReader);
-//
-//            String[] linha = new String[7];
-//            Produto produto;
-//
-//            for (int i = 0; i < 5; i++) {
-//                while ((linha[i] = buffereadReader.readLine()) != null)
-//                    ;
-//            }
-//            produto = new Produto(linha[0],
-//                    linha[1],
-//                    linha[2],
-//                    linha[3],
-//                    Integer.parseInt(linha[4]),
-//                    Integer.parseInt(linha[5]),
-//                    Integer.parseInt(linha[6]));
-//
-//            adicionarProduto(produto);
-//
-//            buffereadReader.close();
-//            fileReader.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    public boolean preencherEspacoVazioComProduto(Produto produto) {
-//        if (quantidadeDeProdutos < capacidadeMaxima) {
-//            for (int i = 0; i < matrizDeProdutos.size(); i++) {
-//                ArrayList<Produto> andar = matrizDeProdutos.get(i);
-//                for (int j = 0; j < andar.size(); j++) {
-//                    Produto espaco = andar.get(j);
-//                    if (espaco.getId().equals("0")) {
-//                        andar.set(j, produto);
-//                        produto.setPosicao(new Posicao(i, j, 0));
-//                        quantidadeDeProdutos++;
-//                        return true;
-//                    }
-//                }
-//            }
-//        }
-//        return false;
-//    }
+
+    @Override
+    public void moverProduto(Produto produto, Posicao novaPosicao) {
+        if (quantidadeDeProdutos < capacidadeMaxima) {
+            for (int i = 0; i < matrizDeProdutos.size(); i++) {
+                for (int j = 0; j < matrizDeProdutos.get(i).size(); j++) {
+                    if (matrizDeProdutos.get(i).get(j).getId().equals("0")) {
+                        matrizDeProdutos.get(i).set(j, produto);
+                        produto.setLocalizacaoDeProduto(novaPosicao);
+                        quantidadeDeProdutos++;
+
+                    }
+                }
+            }
+        }
+
+    }
+    //
+    // public void escreverBackupPredio(String id, Produto[][] matrizDeProdutos) {
+    // String arquivo = id + ".txt";
+    //
+    // try (FileOutputStream arquivoBackupEscrita = new FileOutputStream(arquivo)) {
+    //
+    // for (int i = 0; i < altura; i++) {
+    // for (int j = 0; j < largura; j++) {
+    // String infoToBackup = matrizDeProdutos[i][j].getId() +
+    // "\n" + matrizDeProdutos[i][j].getNome() +
+    // "\n" + matrizDeProdutos[i][j].getTipoDeArmazenagem() +
+    // "\n" + matrizDeProdutos[i][j].getDescricao() +
+    // "\n" + String.valueOf(matrizDeProdutos[i][j].getAndar()) +
+    // "\n" + String.valueOf(matrizDeProdutos[i][j].getApartamento()) +
+    // "\n" + String.valueOf(matrizDeProdutos[i][j].getPredio()) +
+    // "\n";
+    //
+    // byte[] bytes = infoToBackup.getBytes();
+    //
+    // arquivoBackupEscrita.write(bytes);
+    //
+    // }
+    // }
+    // } catch (IOException e) {
+    // e.printStackTrace();
+    // }
+    //
+    // }
+    //
+    // public void lerBackupPredio(String id) {
+    // String arquivo = id + ".txt";
+    //
+    // try {
+    // FileReader fileReader = new FileReader(arquivo);
+    // BufferedReader buffereadReader = new BufferedReader(fileReader);
+    //
+    // String[] linha = new String[7];
+    // Produto produto;
+    //
+    // for (int i = 0; i < 5; i++) {
+    // while ((linha[i] = buffereadReader.readLine()) != null)
+    // ;
+    // }
+    // produto = new Produto(linha[0],
+    // linha[1],
+    // linha[2],
+    // linha[3],
+    // Integer.parseInt(linha[4]),
+    // Integer.parseInt(linha[5]),
+    // Integer.parseInt(linha[6]));
+    //
+    // adicionarProduto(produto);
+    //
+    // buffereadReader.close();
+    // fileReader.close();
+    // } catch (IOException e) {
+    // e.printStackTrace();
+    // }
+    // }
+    //
+    // public boolean preencherEspacoVazioComProduto(Produto produto) {
+    // if (quantidadeDeProdutos < capacidadeMaxima) {
+    // for (int i = 0; i < matrizDeProdutos.size(); i++) {
+    // ArrayList<Produto> andar = matrizDeProdutos.get(i);
+    // for (int j = 0; j < andar.size(); j++) {
+    // Produto espaco = andar.get(j);
+    // if (espaco.getId().equals("0")) {
+    // andar.set(j, produto);
+    // produto.setPosicao(new Posicao(i, j, 0));
+    // quantidadeDeProdutos++;
+    // return true;
+    // }
+    // }
+    // }
+    // }
+    // return false;
+    // }
 }

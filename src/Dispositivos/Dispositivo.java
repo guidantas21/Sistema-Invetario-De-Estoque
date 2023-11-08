@@ -1,3 +1,5 @@
+package Dispositivos;
+
 public abstract class Dispositivo {
     protected int id;
     protected String tipoDeEmbarcado;

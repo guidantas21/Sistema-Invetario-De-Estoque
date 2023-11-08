@@ -1,3 +1,5 @@
+package Dimensoes;
+
 public abstract class Dimensao {
     private double largura;
     private double altura;

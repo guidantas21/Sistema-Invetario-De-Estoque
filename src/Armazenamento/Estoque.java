@@ -1,3 +1,8 @@
+package Armazenamento;
+
+import Armazenamento.Armazenamento;
+import Dimensoes.Dimensao;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,7 +88,7 @@ public class Estoque implements Armazenamento {
     }
 
     public void fazerInventarioDeProdutos() {
-        System.out.println("Inventário de Produtos no Estoque:");
+        System.out.println("Inventário de Produtos no Armazenamento.Estoque:");
         for (Produto produto : produtosNoEstoque) {
             System.out.println("ID: " + produto.getId());
             System.out.println("Nome: " + produto.getNome());

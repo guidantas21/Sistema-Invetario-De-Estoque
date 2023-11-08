@@ -1,9 +1,9 @@
-public class Produto extends Position {
+public class Produto extends Posicao {
     protected String id;
     protected String nome;
     protected String tipoDeArmazenagem;
     protected String descricao;
-    protected Position localizacaoDeProduto;
+    protected Posicao localizacaoDeProduto;
 
     public Produto() {
         super();
@@ -33,11 +33,11 @@ public class Produto extends Position {
         return descricao;
     }
 
-    public Position getLocalizacaoDeProduto() {
+    public Posicao getLocalizacaoDeProduto() {
         return localizacaoDeProduto;
     }
 
-    public void setLocalizacaoDeProduto(Position localizacaoDeProduto) {
+    public void setLocalizacaoDeProduto(Posicao localizacaoDeProduto) {
         this.localizacaoDeProduto = localizacaoDeProduto;
     }
 }

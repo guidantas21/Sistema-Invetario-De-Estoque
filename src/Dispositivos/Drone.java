@@ -1,3 +1,7 @@
+package Dispositivos;
+
+import Dispositivos.Dispositivo;
+
 public class Drone extends Dispositivo {
 
     private boolean verify;

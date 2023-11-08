@@ -2,7 +2,7 @@ package Dispositivos;
 
 import Posicao.Posicao;
 
-public abstract class Dispositivo {
+public abstract class Dispositivo extends Posicao {
     protected int id;
     protected String tipoDeEmbarcado;
     protected Posicao localizacaoInicial;
@@ -14,10 +14,9 @@ public abstract class Dispositivo {
     }
 
     public Dispositivo(int id, String tipoDeEmbarcado, Posicao localizacaoInicial, int autonomia, int velocidade) {
+        super(localizacaoInicial.getX(), localizacaoInicial.getY(), localizacaoInicial.getZ());
         this.id = id;
         this.tipoDeEmbarcado = tipoDeEmbarcado;
-        this.localizacaoInicial.x = localizacaoInicial.x;
-        this.localizacaoInicial.y = localizacaoInicial.y;
         this.autonomia = autonomia;
         this.velocidade = velocidade;
 

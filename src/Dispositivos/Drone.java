@@ -1,6 +1,8 @@
 package Dispositivos;
 
 import Dispositivos.Dispositivo;
+import Posicao.Posicao;
+import Simulador.*;
 
 public class Drone extends Dispositivo {
 
@@ -10,7 +12,7 @@ public class Drone extends Dispositivo {
 
     }
 
-    public Drone(int id, String tipoDeEmbarcado, Position localizcaoInicial, int autonomia, int velocidade) {
+    public Drone(int id, String tipoDeEmbarcado, Posicao localizcaoInicial, int autonomia, int velocidade) {
         super(id, tipoDeEmbarcado, localizcaoInicial, autonomia, velocidade);
 
     }

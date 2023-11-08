@@ -1,7 +1,10 @@
+package Simulador;
+
 import java.util.Random;
 
 public class Simulador {
-    Simulador() {
+
+    public Simulador() {
     }
 
     public int[][] generetorAdijacenseMatriz() {

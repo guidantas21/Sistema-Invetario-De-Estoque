@@ -1,6 +1,8 @@
 package Dispositivos;
 
 import Dispositivos.Dispositivo;
+import Posicao.Posicao;
+import Produto.Produto;
 
 public class Empilhadeira extends Dispositivo {
     private boolean emOperacao;
@@ -9,7 +11,7 @@ public class Empilhadeira extends Dispositivo {
     public Empilhadeira() {
     }
 
-    public Empilhadeira(int id, String tipoDeEmbarcado, Position localizacaoInicial, int autonomia, int velocidade) {
+    public Empilhadeira(int id, String tipoDeEmbarcado, Posicao localizacaoInicial, int autonomia, int velocidade) {
         super(id, tipoDeEmbarcado, localizacaoInicial, autonomia, velocidade);
         this.emOperacao = false;
         this.produtoCarregado = null;
@@ -61,4 +63,3 @@ public class Empilhadeira extends Dispositivo {
         System.out.println("Movimentação da empilhadeira em andamento.");
     }
 }
-

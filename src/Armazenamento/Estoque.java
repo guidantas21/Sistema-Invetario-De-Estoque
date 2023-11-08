@@ -79,6 +79,11 @@ public class Estoque implements Armazenamento {
         }
     }
 
+//    @Override
+//    public void moverProdutoPorID(String id, Posicao novaLocalizacao) {
+//
+//    }
+
     @Override
     public void moverProduto(Produto produto, Posicao novaLocalizacao) {
         // Verifica se o produto existe no estoque
@@ -132,40 +137,40 @@ public class Estoque implements Armazenamento {
         System.out.println("Quantidade total de produtos no estoque: " + quantidadeProdutosRegistrados);
     }
 
-    @Override
-    public void moverProduto(Produto produto, Posicao novaLocalizacao, Predio predio) {
-
-        for (Iterator<ArrayList<Produto>> itA = predio.getMatrizDeProdutos().iterator(); itA.hasNext();) {
-
-            // Verifica se o produto existe no estoque
-            if (itA.next().contains(produto)) {
-                Posicao localizacaoAtual = produto.getLocalizacaoDeProduto();
-
-                int xNovo = novaLocalizacao.getX();
-                int yNovo = novaLocalizacao.getY();
-                int zNovo = novaLocalizacao.getZ();
-
-                // Verifica se a nova localização é válida dentro da dimensão do estoque
-                if (xNovo >= 0 && xNovo < dimensaoEstoque.getLargura() &&
-                        yNovo >= 0 && yNovo < dimensaoEstoque.getAltura() &&
-                        zNovo >= 0 && zNovo < dimensaoEstoque.getProfundidade()) {
-                    // Remove o produto da localização anterior
-                    produtosNoEstoque.remove(produto);
-
-                    // Atualiza a localização do produto
-                    produto.setLocalizacaoDeProduto(novaLocalizacao);
-
-                    // Adiciona o produto na nova localização
-                    predio.adicionarProduto(produto);
-
-                    System.out.println("Produto movido para (" + xNovo + ", " + yNovo + ", " + zNovo + ")");
-                } else {
-                    System.out.println("Nova localização inválida. O produto não foi movido.");
-                }
-            } else {
-                System.out.println("Produto não encontrado no estoque. Não é possível movê-lo.");
-            }
-        }
-    }
+//    @Override
+//    public void moverProduto(Produto produto, Posicao novaLocalizacao, Predio predio) {
+//
+//        for (Iterator<ArrayList<Produto>> itA = predio.getMatrizDeProdutos().iterator(); itA.hasNext();) {
+//
+//            // Verifica se o produto existe no estoque
+//            if (itA.next().contains(produto)) {
+//                Posicao localizacaoAtual = produto.getLocalizacaoDeProduto();
+//
+//                int xNovo = novaLocalizacao.getX();
+//                int yNovo = novaLocalizacao.getY();
+//                int zNovo = novaLocalizacao.getZ();
+//
+//                // Verifica se a nova localização é válida dentro da dimensão do estoque
+//                if (xNovo >= 0 && xNovo < dimensaoEstoque.getLargura() &&
+//                        yNovo >= 0 && yNovo < dimensaoEstoque.getAltura() &&
+//                        zNovo >= 0 && zNovo < dimensaoEstoque.getProfundidade()) {
+//                    // Remove o produto da localização anterior
+//                    produtosNoEstoque.remove(produto);
+//
+//                    // Atualiza a localização do produto
+//                    produto.setLocalizacaoDeProduto(novaLocalizacao);
+//
+//                    // Adiciona o produto na nova localização
+//                    predio.adicionarProduto(produto);
+//
+//                    System.out.println("Produto movido para (" + xNovo + ", " + yNovo + ", " + zNovo + ")");
+//                } else {
+//                    System.out.println("Nova localização inválida. O produto não foi movido.");
+//                }
+//            } else {
+//                System.out.println("Produto não encontrado no estoque. Não é possível movê-lo.");
+//            }
+//        }
+//    }
 
 }

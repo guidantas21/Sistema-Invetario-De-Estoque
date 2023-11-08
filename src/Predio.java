@@ -165,4 +165,22 @@ public class Predio extends Produto implements Armazenamento {
             e.printStackTrace();
         }
     }
+
+    public boolean preencherEspacoVazioComProduto(Produto produto) {
+        if (quantidadeDeProdutos < capacidadeMaxima) {
+            for (int i = 0; i < matrizDeProdutos.size(); i++) {
+                ArrayList<Produto> andar = matrizDeProdutos.get(i);
+                for (int j = 0; j < andar.size(); j++) {
+                    Produto espaco = andar.get(j);
+                    if (espaco.getId().equals("0")) {
+                        andar.set(j, produto);
+                        produto.setLocalizacaoDeProduto(new Position(i, j, 0));
+                        quantidadeDeProdutos++;
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
 }

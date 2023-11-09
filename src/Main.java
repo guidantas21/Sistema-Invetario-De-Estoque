@@ -54,7 +54,7 @@ public class Main {
                     Produto produtoRetirada = encontrarProdutoPorID(estoque, idRetirada);
 
                     if (produtoRetirada != null) {
-                        estoque.retirarProduto(produtoRetirada);
+                        estoque.removerProduto(produtoRetirada);
                     } else {
                         System.out.println("Produto não encontrado no estoque.");
                     }

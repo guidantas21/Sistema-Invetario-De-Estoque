@@ -18,31 +18,31 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Predio novoPredio;
 
-        char escolha;
+        int escolha;
 
         do {
             printMenu();
-            escolha = scanner.next();
+            escolha = inputInt(scanner, ">> Insira a opção selecionada (ex.: 1): ");
             System.out.println();
 
             switch (escolha) {
-                case '2':
+                case 2:
                     // Adicionar Produto
                     System.out.println("== Informe os detalhes do produto ==");
 
-                    String id = inputString("ID: ");
-                    String nome = inputString("Nome: ");
-                    String tipoArmazenagem = inputString("Tipo de Armazenagem: ");
-                    String descricao = inputString("Descrição: ");
+                    String id = inputString(scanner,"ID: ");
+                    String nome = inputString(scanner,"Nome: ");
+                    String tipoArmazenagem = inputString(scanner,"Tipo de Armazenagem: ");
+                    String descricao = inputString(scanner,"Descrição: ");
 
                     Produto produto = new Produto(id, nome, tipoArmazenagem, descricao);
 
                     estoque.adicionarProduto(produto);
 
                     break;
-                case '3':
+                case 3:
                     // Retirar Produto
-                    String idRetirada = inputString(">> Informe o ID do produto a ser retirado: ");
+                    String idRetirada = inputString(scanner,">> Informe o ID do produto a ser retirado: ");
 
                     Produto produtoRetirada = encontrarProdutoPorID(estoque, idRetirada);
 
@@ -52,32 +52,29 @@ public class Main {
                         System.out.println("Produto não encontrado no estoque!");
                     }
                     break;
-                case '4':
+                case 4:
                     // Mover Produto
-                    String idMovimentacao = inputString(">> Informe o ID do produto a ser movido: ");
+                    String idMovimentacao = inputString(scanner, ">> Informe o ID do produto a ser movido: ");
                     Produto produtoMovimentacao = encontrarProdutoPorID(estoque, idMovimentacao);
 
                     if (produtoMovimentacao != null) {
-                        try {
-                            System.out.println("Informe a nova posição do produto: ");
+                        int predio = inputInt(scanner, "Predio (ex.: 10): ");
+                        int andar = inputInt(scanner, "Andar (ex.: 5): ");
+                        int apartamento = inputInt(scanner, "Apartamento (ex.: 20): ");
 
-                            int predio = inputInt(scanner, "Prédio: ");
-                            int andar = inputInt(scanner, "Andar");
-                            int apartamento = inputInt(scanner, "Apartamento: ");
-
-                            estoque.moverProduto(produtoMovimentacao, new Posicao(andar, apartamento, predio));
+                        boolean sucesso = estoque.moverProduto(produtoMovimentacao, new Posicao(andar, apartamento, predio));
+                        scanner.nextLine();
+                        if (sucesso) {
+                            System.out.println("Produto movido com sucesso!");
+                        } else {
+                            System.out.println("Produto não pode ser adicionado.");
                         }
-                        catch (NumberFormatException erro) {
-                            System.out.println("Houve erro na conversão, digite apenas caracteres numéricos" + erro.toString());
-                        }
-
-
 
                     } else {
                         System.out.println("Produto não encontrado no estoque.");
                     }
                     break;
-                case '5':
+                case 5:
                     // Fazer Inventário de Produtos
                     estoque.fazerInventarioDeProdutos();
                     break;
@@ -100,20 +97,14 @@ public class Main {
 //                    novoPredio.escreverBackupPredio(novoPredio.getPredioID(), produto2);
 //                    break;
 
-                case '1':
-                    try {
-                        System.out.println("== Dimensões do Estoque ==");
+                case 1:
+                    System.out.println("== Dimensão do Estoque ==");
 
-                        int numeroDePredios = inputInt(scanner, "Número de prédios (ex.: 10): ");
-                        int numeroDeAndares = inputInt(scanner, "Número de andares por prédio (ex.: 5): ");
-                        int numeroDeApartamentos = inputInt(scanner, "Número de apartamentos por andar (ex.: 20): ");
+                    int numPredios = inputInt(scanner, "Número de prédios (ex.: 10): ");
+                    int numAndares = inputInt(scanner, "Número de andares por prédio (ex.: 5): ");
+                    int numApartamentos = inputInt(scanner, "Número de apartamentos por prédio (ex.: 20): ");
 
-                        estoque = new Estoque(new DimensaoEstoque(numeroDeApartamentos, numeroDeAndares, numeroDePredios));
-                    }
-                    catch (NumberFormatException erro) {
-                        System.out.println("Houve erro na conversão, digite apenas caracteres numéricos" + erro.toString());
-                        scanner.nextLine();
-                    }
+                    estoque = new Estoque(new DimensaoEstoque(numApartamentos, numAndares, numPredios));
 
                     break;
 
@@ -124,6 +115,7 @@ public class Main {
                     System.out.println("Opção inválida! Tente novamente.");
                     break;
             }
+
         } while (escolha != 0);
     }
 

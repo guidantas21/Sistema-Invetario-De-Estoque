@@ -78,24 +78,7 @@ public class Main {
                     // Fazer Inventário de Produtos
                     estoque.fazerInventarioDeProdutos();
                     break;
-//                case 5:
-//
-//                    System.out.print("largura: ");
-//                    int largura = scanner.nextInt();
-//
-//                    System.out.print("altura: ");
-//                    int altura = scanner.nextInt();
-//
-//                    System.out.print("identificador do prédio (número): ");
-//                    int predioId = scanner.nextInt();
-//
-//                    DimensaoPredio dimensaoPredio = new DimensaoPredio(largura, altura);
-//                    novoPredio = new Predio(dimensaoPredio, String.valueOf(predioId));
-//                    Produto produto2 = new Produto("1", "produto", "não sei", "sobre efeito do produto");
-//                    Posicao pos = new Posicao(0, 0, 0);
-//                    produto2.setPosicao(pos);
-//                    novoPredio.escreverBackupPredio(novoPredio.getPredioID(), produto2);
-//                    break;
+
 
                 case 1:
                     System.out.println("== Dimensão do Estoque ==");
@@ -129,12 +112,4 @@ public class Main {
         return null;
     }
 }
-// private static void salvarTudo(ArrayList<String> arquivosAcessados){
-// for (int i = 0; i < ; i++) {
-// for (int j = 0; j < ; j++) {
 
-// matrizDeProdutos.get(i).set(j, produto);
-
-// }
-// }
-// }

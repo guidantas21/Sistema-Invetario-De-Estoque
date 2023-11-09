@@ -43,6 +43,8 @@ public class Estoque extends Armazenamento {
                 this.produtosNoEstoque.add(produto);
 
                 this.predios.get(localizacaoProduto.getPredio()).adicionarProduto(produto);
+
+                return true;
             }
         }
         return false;

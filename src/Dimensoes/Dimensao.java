@@ -1,41 +1,30 @@
 package Dimensoes;
 
 public abstract class Dimensao {
-    private int largura;
-    private int altura;
-    private int profundidade;
+    protected int numApartamentos;
+    protected int numAndares;
 
-    public Dimensao(int largura, int altura, int profundidade) {
-        this.largura = largura;
-        this.altura = altura;
-        this.profundidade = profundidade;
+    public Dimensao() {}
+    public Dimensao(int numApartamentos, int numAndares) {
+        this.numApartamentos = numApartamentos;
+        this.numAndares = numAndares;
     }
 
-    public int getLargura() {
-        return largura;
+    abstract public int getCapacidadeMaxima();
+
+    public int getNumApartamentos() {
+        return numApartamentos;
     }
 
-    public void setLargura(int largura) {
-        this.largura = largura;
+    public void setNumApartamentos(int numApartamentos) {
+        this.numApartamentos = numApartamentos;
     }
 
-    public int getAltura() {
-        return altura;
+    public int getNumAndares() {
+        return numAndares;
     }
 
-    public void setAltura(int altura) {
-        this.altura = altura;
-    }
-
-    public int getProfundidade() {
-        return profundidade;
-    }
-
-    public void setProfundidade(int profundidade) {
-        this.profundidade = profundidade;
-    }
-
-    public int getVolume() {
-        return altura * largura * profundidade;
+    public void setNumAndares(int numAndares) {
+        this.numAndares = numAndares;
     }
 }

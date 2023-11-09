@@ -15,6 +15,11 @@ public class Posicao {
         this.predio = predio;
     }
 
+    public Posicao(int andar, int apartamento) {
+        this.andar = andar;
+        this.apartamento = apartamento;
+    }
+
     public int getAndar() {
         return andar;
     }

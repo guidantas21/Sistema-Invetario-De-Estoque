@@ -120,7 +120,7 @@ Pallet que armazena mercadorias.
 - número de apartamentos por andar dos Prédios
 
 
-### Armazenamento.Armazenamento (interface)
+### Armazenamento.IArmazenamento (interface)
 
 Contrato para classes que armazenam Produtos.
 
@@ -130,13 +130,13 @@ Contrato para classes que armazenam Produtos.
 - retirar Produto
 - mover Produto
 
-### Prédio (classe concreta que implementa Armazenamento.Armazenamento)
+### Prédio (classe concreta que implementa Armazenamento.IArmazenamento)
 
 Basicamente uma estante que armzena produtos (se comporta  como uma matriz).
 
 #### Atributos
 
-- largura "andares"
+- numApartamentos "andares"
 - altura "apartamentos"
 - matriz de Produtos
 - capacidade máxima de Produtos
@@ -150,7 +150,7 @@ Basicamente uma estante que armzena produtos (se comporta  como uma matriz).
 - verificar se apartamento está disponível
 
 
-### Armazenamento.Estoque (classe concreta que implementa Armazenamento.Armazenamento)
+### Armazenamento.Estoque (classe concreta que implementa Armazenamento.IArmazenamento)
 
 Onde os prédio são armazenados.
 

@@ -1,12 +1,33 @@
 package Armazenamento;
 
-import Posicao.*;
+import Dimensoes.Dimensao;
 import Produto.Produto;
 
-public interface Armazenamento {
-    void adicionarProduto(Produto produto);
+public abstract class Armazenamento {
+    protected Dimensao dimensao;
+    protected int capacidadeMaxima;
+    protected int quantidadeProdutos;
 
-    void retirarProduto(Produto produto);
+    public Armazenamento() {}
 
-    void moverProduto(Produto produto, Posicao novaLocalizacao);
+    public Armazenamento(Dimensao dimensao, int capacidadeMaxima) {
+        this.dimensao = dimensao;
+        this.capacidadeMaxima = capacidadeMaxima;
+    }
+
+    public Dimensao getDimensao() {
+        return dimensao;
+    }
+
+    public int getCapacidadeMaxima() {
+        return capacidadeMaxima;
+    }
+
+    public int getQuantidadeProdutos() {
+        return quantidadeProdutos;
+    }
+
+    abstract public boolean adicionarProduto(Produto produto);
+
+    abstract public Produto removerProduto(Produto produto);
 }

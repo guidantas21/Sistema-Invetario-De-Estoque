@@ -28,22 +28,9 @@ public class Menu {
         return input;
     }
 
-    public static int inputInt(String prompt) {
-        Scanner scanner = new Scanner(System.in);
-        int input;
+    public static int inputInt(Scanner scanner, String prompt) {
+        System.out.print(prompt);
 
-        while (true) {
-            System.out.print(prompt);
-            String inputStr = scanner.nextLine();
-            try {
-               input = Integer.parseInt(inputStr);
-               break;
-            } catch (NumberFormatException e) {
-                System.out.println("A entrada deve ser um número inteiro.");
-            }
-        }
-
-        scanner.close();
-        return input;
+        return scanner.nextInt();
     }
 }

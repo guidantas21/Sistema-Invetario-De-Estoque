@@ -18,15 +18,15 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Predio novoPredio;
 
-        int escolha;
+        char escolha;
 
         do {
             printMenu();
-            escolha = scanner.nextInt();
+            escolha = scanner.next();
             System.out.println();
 
             switch (escolha) {
-                case 2:
+                case '2':
                     // Adicionar Produto
                     System.out.println("== Informe os detalhes do produto ==");
 
@@ -40,7 +40,7 @@ public class Main {
                     estoque.adicionarProduto(produto);
 
                     break;
-                case 3:
+                case '3':
                     // Retirar Produto
                     String idRetirada = inputString(">> Informe o ID do produto a ser retirado: ");
 
@@ -52,24 +52,32 @@ public class Main {
                         System.out.println("Produto não encontrado no estoque!");
                     }
                     break;
-                case 4:
+                case '4':
                     // Mover Produto
                     String idMovimentacao = inputString(">> Informe o ID do produto a ser movido: ");
                     Produto produtoMovimentacao = encontrarProdutoPorID(estoque, idMovimentacao);
 
                     if (produtoMovimentacao != null) {
-                        System.out.println("Informe a nova posição do produto: ");
+                        try {
+                            System.out.println("Informe a nova posição do produto: ");
 
-                        int andar = inputInt("Andar");
-                        int apartamento = inputInt("Apartamento: ");
-                        int predio = inputInt("Prédio: ");
+                            int predio = inputInt(scanner, "Prédio: ");
+                            int andar = inputInt(scanner, "Andar");
+                            int apartamento = inputInt(scanner, "Apartamento: ");
 
-                        estoque.moverProduto(produtoMovimentacao, new Posicao(andar, apartamento, predio));
+                            estoque.moverProduto(produtoMovimentacao, new Posicao(andar, apartamento, predio));
+                        }
+                        catch (NumberFormatException erro) {
+                            System.out.println("Houve erro na conversão, digite apenas caracteres numéricos" + erro.toString());
+                        }
+
+
+
                     } else {
                         System.out.println("Produto não encontrado no estoque.");
                     }
                     break;
-                case 5:
+                case '5':
                     // Fazer Inventário de Produtos
                     estoque.fazerInventarioDeProdutos();
                     break;
@@ -92,13 +100,20 @@ public class Main {
 //                    novoPredio.escreverBackupPredio(novoPredio.getPredioID(), produto2);
 //                    break;
 
-                case 1:
-                    System.out.println("== Dimensões do Estoque ==");
-                    int numeroDePredios = inputInt("Número de prédios (ex.: 10): ");
-                    int numeroDeAndares = inputInt("Número de andares por prédio (ex.: 5): ");
-                    int numeroDeApartamentos = inputInt("Número de apartamentos por andar (ex.: 20): ");
+                case '1':
+                    try {
+                        System.out.println("== Dimensões do Estoque ==");
 
-                    estoque = new Estoque(new DimensaoEstoque(numeroDeApartamentos, numeroDeAndares, numeroDePredios));
+                        int numeroDePredios = inputInt(scanner, "Número de prédios (ex.: 10): ");
+                        int numeroDeAndares = inputInt(scanner, "Número de andares por prédio (ex.: 5): ");
+                        int numeroDeApartamentos = inputInt(scanner, "Número de apartamentos por andar (ex.: 20): ");
+
+                        estoque = new Estoque(new DimensaoEstoque(numeroDeApartamentos, numeroDeAndares, numeroDePredios));
+                    }
+                    catch (NumberFormatException erro) {
+                        System.out.println("Houve erro na conversão, digite apenas caracteres numéricos" + erro.toString());
+                        scanner.nextLine();
+                    }
 
                     break;
 

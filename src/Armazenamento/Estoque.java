@@ -5,10 +5,7 @@ import Dimensoes.DimensaoPredio;
 import Produto.*;
 import Posicao.*;
 
-import Dimensoes.Dimensao;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class Estoque extends Armazenamento {
     DimensaoEstoque dimensao;
@@ -79,6 +76,7 @@ public class Estoque extends Armazenamento {
 
     public boolean moverProduto(Produto produto, Posicao posicao) {
         if (this.removerProduto(produto) != null) {
+
             boolean sucesso = adicionarProduto(produto, posicao);
 
             if (sucesso) {
@@ -132,4 +130,8 @@ public class Estoque extends Armazenamento {
     }
 
     public int getQuantidadeDeProdutosRegistrados() { return produtosNoEstoque.size(); }
+
+    public ArrayList<Predio> getPredios() {
+        return predios;
+    }
 }

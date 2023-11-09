@@ -1,18 +1,18 @@
 package frontend;
 
 import java.util.InputMismatchException;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Menu {
     public static void printMenu() {
-        System.out.println("== Gerenciamento de Estoque ==");
-        System.out.println("\t1. Dimesionar estoque\n");
+        System.out.println("\n== Gerenciamento de Estoque ==");
+        System.out.println("\t1. Dimesionar estoque");
+        System.out.println("\t2. Status do estoque\n");
         System.out.println("== Gerenciamento de Produtos ==");
-        System.out.println("\t2. Adicionar Produto");
-        System.out.println("\t3. Retirar Produto");
-        System.out.println("\t4. Mover Produto");
-        System.out.println("\t5. Fazer Inventário de Produtos");
+        System.out.println("\t3. Adicionar Produto");
+        System.out.println("\t4. Retirar Produto");
+        System.out.println("\t5. Mover Produto");
+        System.out.println("\t6. Fazer Inventário de Produtos");
 
         System.out.println("\t0. Sair");
     }
@@ -30,10 +30,12 @@ public class Menu {
                 input = scanner.nextInt();
                 break;
             } catch (InputMismatchException erro) {
-                System.out.println("Deu ruim barao");
+                System.out.println("Entrada inválida. Digite um número.");
                 scanner.nextLine();
             }
         }
         return input;
     }
 }
+
+

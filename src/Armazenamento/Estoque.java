@@ -55,7 +55,6 @@ public class Estoque extends Armazenamento {
 
                 if (sucesso) {
                     this.produtosNoEstoque.add(produto);
-                    this.quantidadeProdutos++;
 
                     return true;
                 }
@@ -70,7 +69,7 @@ public class Estoque extends Armazenamento {
 
         if (produtoRemovido != null) {
             this.produtosNoEstoque.remove(produto);
-            this.quantidadeProdutos--;
+
         }
 
         return produtoRemovido;
@@ -78,7 +77,12 @@ public class Estoque extends Armazenamento {
 
     public boolean moverProduto(Produto produto, Posicao posicao) {
         if (this.removerProduto(produto) != null) {
-            return adicionarProduto(produto, posicao);
+            boolean sucesso = adicionarProduto(produto, posicao);
+
+            if (sucesso) {
+                produto.setPosicao(posicao);
+                return true;
+            }
         }
         return false;
     }
@@ -113,7 +117,7 @@ public class Estoque extends Armazenamento {
                 System.out.println("----------------------");
             }
         }
-        System.out.println("Quantidade total de produtos no estoque: " + quantidadeProdutos);
+        System.out.println("Quantidade total de produtos no estoque: " + this.getQuantidadeDeProdutosRegistrados());
     }
 
     @Override
@@ -124,4 +128,6 @@ public class Estoque extends Armazenamento {
     public ArrayList<Produto> getProdutosNoEstoque() {
         return produtosNoEstoque;
     }
+
+    public int getQuantidadeDeProdutosRegistrados() { return produtosNoEstoque.size(); }
 }
